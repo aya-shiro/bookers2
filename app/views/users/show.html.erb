@@ -1,0 +1,32 @@
+
+<!--ここから共通-->
+<!--自身の情報-->
+<h1>User info</h1>
+<%= image_tag @user.get_profile_image(100,100) %>
+
+<p>name<%= @user.name %></p>
+<p>introduction<%= @user.introduction %></p>
+
+
+<!--投稿フォーム-->
+<h3>New book</h3>
+<%= form_with model: @book do |f| %>
+  <h5>Title</h5>
+  <%= f.text_field :title %>
+  <h5>Opinion</h5>
+  <%= f.text_area :body %>
+
+  <%= f.submit "Create book" %>
+<% end %>
+<!--ここまで共通-->
+
+
+<!--自身の投稿一覧-->
+<h3>Books</h3>
+<p>Title</p>
+<p>Opinion</p>
+<% @books.each do |book| %>
+  <%= image_tag book.image(100,100) %>
+  <%= book.title %>
+  <%= book.body %>
+<% end %>

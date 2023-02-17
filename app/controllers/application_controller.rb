@@ -3,7 +3,8 @@ class ApplicationController < ActionController::Base
 
 
   def after_sign_in_path_for(resourse)
-    oo_path
+    # いったん詳細にとばす、本当はユーザー詳細へとばす
+    book_path
   end
 
   # ログアウト後の遷移先
