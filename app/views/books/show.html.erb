@@ -1,11 +1,16 @@
 <!--ここから共通-->
 <!--自身の情報-->
 <h1>User info</h1>
-<%= image_tag @user.get_profile_image(100,100) %>
+<%= image_tag @user.get_profile_image(100, 100) %>
 
 <p>name<%= @user.name %></p>
 <p>introduction<%= @user.introduction %></p>
 
+<% if @user == current_user %>
+  <%= link_to "editbatton", edit_user_path(@user.id) %>
+<% else %>
+  <%= link_to "editbatton", user_path %>
+<% end %>
 
 <!--投稿フォーム-->
 <h3>New book</h3>
@@ -22,8 +27,8 @@
 
 <!--投稿詳細-->
 <h3>Book detail</h3>
-<%= image_tag book.image(100,100) %>
-<%= book.title %>
-<%= book.body %>
+<%= image_tag @book.get_image(100, 100) %>
+<%= @book.title %>
+<%= @book.body %>
 <%= link_to "Edit", edit_book_path %>
-<%= link_to "Destroy", book_path, method: :destroy %>
+<%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>

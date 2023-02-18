@@ -1,11 +1,16 @@
 <!--ここから共通-->
 <!--自身の情報-->
 <h1>User info</h1>
-<%= image_tag @user.get_profile_image(100,100) %>
+<%= image_tag @user.get_profile_image(100, 100) %>
 
 <p>name<%= @user.name %></p>
 <p>introduction<%= @user.introduction %></p>
 
+<% if @user == current_user %>
+  <%= link_to "editbatton", edit_user_path(@user.id) %>
+<% else %>
+  <%= link_to "editbatton", user_path %>
+<% end %>
 
 <!--投稿フォーム-->
 <h3>New book</h3>
@@ -20,15 +25,12 @@
 <!--ここまで共通-->
 
 
-<h3>Books</h3>
+<h3>Users</h3>
 
-<p>Title</p>
-<p>Opinion</p>
+<p>Image</p>
+<p>Name</p>
 <% @users.each do |user| %>
-  <%= user.get_profile_image(100, 100) %>
-<% end %>
-
-<% @books.each do |book| %>
-  <%= user.book.title %>
-  <%= link_to "show", book_parh(user.id) %>
+  <% user.get_profile_image(100, 100) %>
+  <%= user.name %>
+  <%= link_to "show", user_path(@user.id) %>
 <% end %>
