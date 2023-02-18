@@ -3,12 +3,15 @@ class ApplicationController < ActionController::Base
 
 
   def after_sign_in_path_for(resourse)
+    # サインイン後はどのページに遷移するか？引数設定忘れない！
     user_path(current_user.id)
+    flash[:notice] = "Welcome! You have signed up successfully."
   end
 
   # ログアウト後の遷移先
   def after_sign_out_path_for(resourrce)
     root_path
+    flash[:notice] = "Signed out successfully."
   end
 
   protected

@@ -9,10 +9,15 @@ class BooksController < ApplicationController
     @book = Book.new(books_params)
     # 受取った1レコードのuser_idと現在のユーザーを結ぶ
     @book.user_id = current_user.id
-    @book.save
+    if @book.save
     # 詳細や編集ページに飛ぶときは引数で:idを指定する必要がある！
-    redirect_to book_path(@book.id)
-
+      redirect_to book_path(@book.id)
+      flash[:notice] = "You have created book successfully."
+    else
+      @user = User.find(params[:id])
+      @books = Book.all
+      render :index
+    end
   end
 
   def index
@@ -33,9 +38,13 @@ class BooksController < ApplicationController
   end
 
   def update
-    book = Book.find(params[:id])
-    book.update(books_params)
-    redirect_to book_path(book.id)
+    @book = Book.find(params[:id])
+    if @book.update(books_params)
+      redirect_to book_path(@book.id)
+      flash[:notice] = "You have updated book successfully."
+    else
+      render :edit
+    end
   end
 
   def destroy
