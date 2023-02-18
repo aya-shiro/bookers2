@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root to: 'homes#top'
   get "homes/about" => "homes#about", as: "about"
-  post "users/sign_up" => "devise/registrations#new"
+  # post "users/sign_up" => "devise/registrations#new"
 
   resources :users, only: [:show, :edit, :update, :index]
   resources :books, only: [:new, :create, :index, :show, :edit, :update, :destroy]
