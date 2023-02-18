@@ -25,16 +25,18 @@
 <!--ここまで共通-->
 
 
-<!--自身の投稿一覧-->
+<!--投稿一覧自分のと他者の！！-->
 <h3>Books</h3>
 <p>Title</p>
 <p>Opinion</p>
 <% @books.each do |book| %>
   <%= image_tag book.get_image(100, 100) %>
   <!--以下本のタイトルからユーザー詳細ページuser_pathに遷移-->
-  <%= link_to user_path(book.id) do %>
-    <%= book.title %>
-  <% end %>
+
+    <%= link_to book_path(book.id) do %>
+      <%= book.title %>
+    <% end %>
+
 
    <%= book.body %>
 <% end %>

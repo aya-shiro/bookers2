@@ -28,6 +28,11 @@
 <!--投稿詳細-->
 <h3>Book detail</h3>
 <%= image_tag @book.get_image(100, 100) %>
+
+<%= link_to book_path(@user.id) do %>
+  <%= @user.name %>
+<% end %>
+
 <%= @book.title %>
 <%= @book.body %>
 <%= link_to "Edit", edit_book_path %>
