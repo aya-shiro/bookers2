@@ -30,7 +30,7 @@
 <p>Title</p>
 <p>Opinion</p>
 <% @books.each do |book| %>
-  <%= image_tag book.image(100,100) %>
+  <%= image_tag book.get_image(100, 100) %>
   <%= book.title %>
   <%= book.body %>
 <% end %>

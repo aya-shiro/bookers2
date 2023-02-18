@@ -3,6 +3,8 @@
 <%= form_with model: @user do |f| %>
   <p>Name</p>
   <%= f.text_field :name %>
+  <P>Image</P>
+  <%= f.file_field :profile_image %>
   <p>Introduction</p>
   <%= f.text_area :introduction %>
 
