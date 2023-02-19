@@ -1,15 +1,31 @@
 <div><%= flash[:notice] %></div>
 
-<!--部分テンプレート化！-->
-<%= render 'layouts/profile_bookpost', user: @user, book: @book %>
 
+<div class="container">
+  <div class="row">
+    <!--部分テンプレート化！-->
+    <%= render 'layouts/profile_bookpost', user: @user, book: @book %>
 
-<h3>Users</h3>
+    <div class="col-md-9">
+      <table class="table">
+        <thead>
+          <h3>Users</h3>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+          </tr>
+        </thead>
 
-<p>Image</p>
-<p>Name</p>
-<% @users.each do |user| %>
-  <% user.get_profile_image(100, 100) %>
-  <%= user.name %>
-  <%= link_to "show", user_path(user.id) %>
-<% end %>
+        <% @users.each do |user| %>
+        <tbody>
+          <!--ユーザー画像見えなくなった？-->
+          <td><% user.get_profile_image(100, 100) %></td>
+          <td><%= user.name %></td>
+          <td><%= link_to "show", user_path(user.id) %></td>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>

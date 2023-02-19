@@ -1,26 +1,41 @@
 <div><%= flash[:notice] %></div>
 
 
-<!--部分テンプレート化！-->
-<%= render 'layouts/profile_bookpost', user: @user, book: @book %>
+<div class="container">
+  <div class="row">
+    <!--部分テンプレート化！-->
+    <%= render 'layouts/profile_bookpost', user: @user, book: @book %>
 
 
-<!--投稿詳細-->
-<h3>Book detail</h3>
-<%= image_tag @book.get_image(100, 100) %>
+    <!--投稿詳細-->
+    <div class="col-md-9">
+      <table class="table">
+        <tbody>
+          <h3>Book detail</h3>
+          <tr>
+            <td>
+            <%= image_tag @book.get_image(100, 100) %>
+              <%= link_to user_path(@user.id) do %><br />
+              <%= @user.name %>
+            <% end %>
+            </td>
 
-<%= link_to user_path(@user.id) do %>
-  <%= @user.name %>
-<% end %>
+            <%= link_to book_path do %>
+              <td><%= @book.title %></td>
+            <% end %>
 
-<%= link_to book_path do %>
-  <%= @book.title %>
-<% end %>
+            <td><%= @book.body %></td>
 
-<%= @book.body %>
+        <!--本人にのみ本の編集/削除権限を与える-->
+            <% if @user == current_user %>
+              <td><%= link_to "Edit", edit_book_path %></ts>
+              <td><%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-<!--本人にのみ本の編集/削除権限を与える-->
-<% if @user == current_user %>
-  <%= link_to "Edit", edit_book_path %>
-  <%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-<% end %>
+  </div>
+</div>
+
