@@ -1,20 +1,38 @@
 <div><%= flash[:notice] %></div>
 
-
+<div class="container">
+<div class="row">
 <!--部分テンプレート化！-->
 <%= render 'layouts/profile_bookpost', user: @user, book: @book %>
 
 
 <!--自身の投稿一覧-->
-<h3>Books</h3>
-<p>Title</p>
-<p>Opinion</p>
-<% @books.each do |book| %>
-  <%= image_tag book.get_image(100, 100) %>
+<div class="col-md-9">
+<table class="table">
+  <thead>
+    <h2>Books</h2>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th>Opinion</th>
+    </tr>
+  </thead>
 
-  <%= link_to book_path(book.id) do %>
-    <%= book.title %>
-  <% end %>
+  <% @books.each do |book| %>
+  <tbody>
+      <td><%= image_tag book.get_image(100, 100) %></td>
 
-  <%= book.body %>
-<% end %>
+      <%= link_to book_path(book.id) do %>
+      <!--リンクになってない、のち修正！！-->
+        <td><%= book.title %></td>
+      <% end %>
+
+      <td><%= book.body %></td>
+    <% end %>
+  </tbody>
+
+</table>
+</div>
+
+  </div>
+</div>

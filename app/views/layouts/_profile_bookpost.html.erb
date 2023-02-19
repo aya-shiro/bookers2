@@ -1,28 +1,51 @@
 <!--部分テンプレート化、@外す-->
-
+<div class="col-md-3">
 <!--ここから共通-->
 <!--自身の情報-->
-<h1>User info</h1>
+<h2>User info</h2>
 <%= image_tag user.get_profile_image(100, 100) %>
 
-<p>name<%= user.name %></p>
-<p>introduction<%= user.introduction %></p>
+<table class="table">
+  <tr>
+    <th>name</th>
+    <th><%= user.name %></th>
+  </tr>
+  <tr>
+    <th>introduction<%= user.introduction %></th>
+  </tr>
+</table>
+
 
 <% if user == current_user %>
-  <%= link_to "editbatton", edit_user_path(user.id) %>
+  <%= link_to edit_user_path(user.id) do %>
+    <div class="btn btn-block btn-outline-secondary">
+      <i class="fas fa-user-edit"></i>
+    </div>
+  <% end %>
 <% else %>
 <!--他者プロフィールのユーザー編集ボタンを押した場合は自分のプロフィールに飛ぶ-->
-  <%= link_to "editbatton", user_path(current_user.id) %>
+  <%= link_to user_path(current_user.id) do %>
+    <div class="btn btn-block btn-outline-secondary">
+      <i class="fas fa-user-edit"></i>
+    </div>
+  <% end %>
+
 <% end %>
 
 <!--投稿フォーム-->
-<h3>New book</h3>
+<h2>New book</h2>
 <%= form_with model: book do |f| %>
+<div class="form-group">
   <h5>Title</h5>
   <%= f.text_field :title %>
+</div>
+<div class="form-group">
   <h5>Opinion</h5>
   <%= f.text_area :body %>
+</div>
 
-  <%= f.submit "Create book" %>
+  <%= f.submit "Create book", class: "bg-success text-white border border-success" %>
 <% end %>
 <!--ここまで共通-->
+
+</div>
