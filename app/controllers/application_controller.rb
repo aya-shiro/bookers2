@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   # 未ログインの場合ログイン画面に送る
-  before_action :authenticate_user!, expect: [:top]
+  before_action :authenticate_user!, except: [:top, :about]
+
   before_action :configure_permitted_parameters, if: :devise_controller?
 
 
@@ -15,7 +16,7 @@ class ApplicationController < ActionController::Base
   # ログアウト後の遷移先
   def after_sign_out_path_for(resource)
     root_path
-    flash[:notice] = "Signed out successfully."
+    # flash[:notice] = "Signed out successfully."
   end
 
   protected

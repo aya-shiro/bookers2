@@ -11,7 +11,7 @@
 <% if @user == current_user %>
   <%= link_to "editbatton", edit_user_path(@user.id) %>
 <% else %>
-  <%= link_to "editbatton", user_path %>
+  <%= link_to "editbatton", user_path(current_user.id) %>
 <% end %>
 
 <!--投稿フォーム-->

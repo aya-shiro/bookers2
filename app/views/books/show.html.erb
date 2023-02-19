@@ -11,7 +11,7 @@
 <% if @user == current_user %>
   <%= link_to "editbatton", edit_user_path(@user.id) %>
 <% else %>
-  <%= link_to "editbatton", user_path %>
+  <%= link_to "editbatton", user_path(current_user.id) %>
 <% end %>
 
 <!--投稿フォーム-->
@@ -31,11 +31,18 @@
 <h3>Book detail</h3>
 <%= image_tag @book.get_image(100, 100) %>
 
-<%= link_to book_path(@user.id) do %>
+<%= link_to user_path(@user.id) do %>
   <%= @user.name %>
 <% end %>
 
-<%= @book.title %>
+<%= link_to book_path do %>
+  <%= @book.title %>
+<% end %>
+
 <%= @book.body %>
-<%= link_to "Edit", edit_book_path %>
-<%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+
+<!--本人にのみ本の編集/削除権限を与える-->
+<% if @user == current_user %>
+  <%= link_to "Edit", edit_book_path %>
+  <%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+<% end %>
