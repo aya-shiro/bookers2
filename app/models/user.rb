@@ -6,10 +6,10 @@ class User < ApplicationRecord
 
   has_many :books, dependent: :destroy
 
-  # name重複禁止、2‐50字制限
+  # name重複禁止、2‐20字制限
   validates :name, uniqueness: true
-  validates :name, numericality: {greater_than: 2, less_than: 20}
-  # validates :introduction, length: {muximum: 50}
+  validates :name, length: {in: 2..20}
+  validates :introduction, length: {maximum: 50}
 
   has_one_attached :profile_image
 
