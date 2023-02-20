@@ -33,7 +33,11 @@
       <% @books.each do |book| %>
       <tbody>
         <tr>
-          <td><%= image_tag book.get_image(100, 100) %></td>
+          <td>
+            <%= link_to user_path(book.id) do %>
+              <%= image_tag book.get_image(100, 100) %>
+            <% end %>
+          </td>
           <!--以下本のタイトルからbook詳細ページbook_pathに遷移-->
           <td>
           <%= link_to book_path(book.id) do %>

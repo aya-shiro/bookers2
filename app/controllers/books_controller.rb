@@ -14,7 +14,7 @@ class BooksController < ApplicationController
       redirect_to book_path(@book.id)
       flash[:notice] = "You have created book successfully."
     else
-      @user = User.find(params[:id])
+      @user = @book.user
       @books = Book.all
       render :index
     end
@@ -28,6 +28,7 @@ class BooksController < ApplicationController
   end
 
   def show
+    @newbook = Book.new
     @book = Book.find(params[:id])
     @user = @book.user
     # ここの.userはモデルを表す
@@ -35,6 +36,10 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find(params[:id])
+    if @book.user.id != current_user.id
+      redirect_to books_path
+    end
+
   end
 
   def update

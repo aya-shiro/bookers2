@@ -4,23 +4,23 @@
 <div class="container">
   <div class="row">
     <!--部分テンプレート化！-->
-    <%= render 'layouts/profile_bookpost', user: @user, book: @book %>
+    <%= render 'layouts/profile_bookpost', user: @user, book: @newbook %>
 
 
     <!--投稿詳細-->
     <div class="col-md-8 offset-md-1">
       <div class="mt-3">
-        <h3>Book detail</h3>
+        <h2>Book detail</h2>
       </div>
 
       <table class="table">
         <tbody>
           <tr>
             <td>
-            <%= image_tag @book.get_image(100, 100) %>
-              <%= link_to user_path(@user.id) do %><br />
-              <%= @user.name %>
-            <% end %>
+              <%= link_to user_path(@user.id) do %>
+                <%= image_tag @book.get_image(100, 100) %><br />
+                <%= @user.name %>
+              <% end %>
             </td>
 
             <td>
@@ -34,14 +34,10 @@
         <!--本人にのみ本の編集/削除権限を与える-->
             <% if @user == current_user %>
               <td>
-                <div class="btn btn-sm btn-success text-white">
-                  <%= link_to "Edit", edit_book_path %>
-                </div>
+                <%= link_to "Edit", edit_book_path, class: "btn btn-sm btn-success"%>
               </td>
               <td>
-                <div class="btn btn-sm btn-danger text-white">
-                  <%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-                </div>
+                <%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %>
               </td>
             <% end %>
           </tr>

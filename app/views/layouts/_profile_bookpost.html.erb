@@ -8,32 +8,22 @@
 
 <%= image_tag user.get_profile_image(100, 100) %>
 
-<table class="table">
-  <tr>
-    <th>name</th>
-    <th><%= user.name %></th>
-  </tr>
-  <tr>
-    <th>introduction<%= user.introduction %></th>
-  </tr>
-</table>
+  <table class="table">
+    <tr>
+      <th>name</th>
+      <th><%= user.name %></th>
+    </tr>
+      <tr>
+        <th>introduction<%= user.introduction %></th>
+      </tr>
+  </table>
 
 
-<% if user == current_user %>
   <%= link_to edit_user_path(user.id) do %>
     <div class="btn btn-block btn-outline-secondary">
       <i class="fas fa-user-cog"></i>
     </div>
   <% end %>
-<% else %>
-<!--他者プロフィールのユーザー編集ボタンを押した場合は自分のプロフィールに飛ぶ-->
-  <%= link_to user_path(current_user.id) do %>
-    <div class="btn btn-block btn-outline-secondary">
-      <i class="fas fa-user-cog"></i>
-    </div>
-  <% end %>
-
-<% end %>
 
 <!--投稿フォーム-->
 <div class="mt-4">
@@ -50,7 +40,7 @@
   <%= f.text_area :body %>
 </div>
 
-  <%= f.submit "Create book", class: "bg-success text-white border border-success" %>
+  <%= f.submit "Create Book", class: "bg-success text-white border border-success" %>
 <% end %>
 <!--ここまで共通-->
 
