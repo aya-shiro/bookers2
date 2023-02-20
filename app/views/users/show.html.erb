@@ -24,6 +24,7 @@
   <tbody>
     <tr>
       <td>
+        <!--ユーザーの詳細に飛ばす＝取り出した本を、作ったユーザーの、IDが必要！！-->
         <%= link_to user_path(book.user.id) do %>
           <%= image_tag book.get_image(100, 100) %>
         <% end %>

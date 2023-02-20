@@ -28,6 +28,7 @@ class BooksController < ApplicationController
   end
 
   def show
+    # 左側投稿フォームform_withで使うのは@newbook、右側本詳細で表示するのは実際に受け取ったレコード@book！
     @newbook = Book.new
     @book = Book.find(params[:id])
     @user = @book.user
@@ -36,6 +37,7 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find(params[:id])
+    
     if @book.user.id != current_user.id
       redirect_to books_path
     end
