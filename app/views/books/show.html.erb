@@ -8,10 +8,13 @@
 
 
     <!--投稿詳細-->
-    <div class="col-md-9">
+    <div class="col-md-8 offset-md-1">
+      <div class="mt-3">
+        <h3>Book detail</h3>
+      </div>
+
       <table class="table">
         <tbody>
-          <h3>Book detail</h3>
           <tr>
             <td>
             <%= image_tag @book.get_image(100, 100) %>
@@ -20,16 +23,26 @@
             <% end %>
             </td>
 
+            <td>
             <%= link_to book_path do %>
-              <td><%= @book.title %></td>
+              <%= @book.title %>
             <% end %>
+            </td>
 
             <td><%= @book.body %></td>
 
         <!--本人にのみ本の編集/削除権限を与える-->
             <% if @user == current_user %>
-              <td><%= link_to "Edit", edit_book_path %></ts>
-              <td><%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
+              <td>
+                <div class="btn btn-sm btn-success">
+                  <%= link_to "Edit", edit_book_path %>
+                </div>
+              </td>
+              <td>
+                <div class="btn btn-sm btn-danger">
+                  <%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+                </div>
+              </td>
             <% end %>
           </tr>
         </tbody>

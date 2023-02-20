@@ -16,10 +16,13 @@
 
 
     <!--投稿一覧自分のと他者の！！-->
-    <div class="col-md-9">
-    <table class="table">
-      <thead>
+    <div class="col-md-8 offset-md-1">
+      <div class="mt-3">
         <h2>Books</h2>
+      </div>
+
+      <table class="table">
+      <thead>
         <tr>
           <th></th>
           <th>Title</th>
@@ -32,10 +35,12 @@
         <tr>
           <td><%= image_tag book.get_image(100, 100) %></td>
           <!--以下本のタイトルからbook詳細ページbook_pathに遷移-->
-          <!--リンクになってない、のち修正！！-->
+          <td>
           <%= link_to book_path(book.id) do %>
-            <td><%= book.title %></td>
+            <%= book.title %>
           <% end %>
+          </td>
+
           <td><%= book.body %></td>
         </tr>
       <% end %>

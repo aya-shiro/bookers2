@@ -6,10 +6,12 @@
     <!--部分テンプレート化！-->
     <%= render 'layouts/profile_bookpost', user: @user, book: @book %>
 
-    <div class="col-md-9">
+    <div class="col-md-8 offset-md-1">
+      <div class="mt-3">
+        <h3>Users</h3>
+      </div>
       <table class="table">
         <thead>
-          <h3>Users</h3>
           <tr>
             <th>Image</th>
             <th>Name</th>
@@ -18,11 +20,13 @@
 
         <% @users.each do |user| %>
         <tbody>
-          <!--ユーザー画像見えなくなった？-->
-          <td><% user.get_profile_image(100, 100) %></td>
-          <td><%= user.name %></td>
-          <td><%= link_to "show", user_path(user.id) %></td>
-          <% end %>
+          <tr>
+            <!--ユーザー画像見えなくなった？-->
+            <td><%= image_tag user.get_profile_image(100, 100) %></td>
+            <td><%= user.name %></td>
+            <td><%= link_to "show", user_path(user.id) %></td>
+          </tr>
+        <% end %>
         </tbody>
       </table>
     </div>
