@@ -22,14 +22,14 @@
 <% if user == current_user %>
   <%= link_to edit_user_path(user.id) do %>
     <div class="btn btn-block btn-outline-secondary">
-      <i class="fas fa-user-edit"></i>
+      <i class="fas fa-user-cog"></i>
     </div>
   <% end %>
 <% else %>
 <!--他者プロフィールのユーザー編集ボタンを押した場合は自分のプロフィールに飛ぶ-->
   <%= link_to user_path(current_user.id) do %>
     <div class="btn btn-block btn-outline-secondary">
-      <i class="fas fa-user-edit"></i>
+      <i class="fas fa-user-cog"></i>
     </div>
   <% end %>
 

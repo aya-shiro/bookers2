@@ -9,7 +9,6 @@ class ApplicationController < ActionController::Base
     flash[:notice] = "Welcome! You have signed up successfully."
     # サインイン後はどのページに遷移するか？引数設定忘れない！render
     user_path(current_user.id)
-
   end
 
   # ログアウト後の遷移先
@@ -21,5 +20,7 @@ class ApplicationController < ActionController::Base
   protected
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:sign_in, keys: [:name])
   end
+
 end
